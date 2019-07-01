@@ -8,8 +8,9 @@ import { selectTab } from './tabActions'
 class TabHeader extends React.Component {
 
     render(){
+        const selected = this.props.tab.selected === this.props.target
         return (
-            <li>
+            <li className={selected ? 'active' : ''}>
                 <a href='javascript:;'
                     data-toggle='tab'
                     data-target={this.props.target}
