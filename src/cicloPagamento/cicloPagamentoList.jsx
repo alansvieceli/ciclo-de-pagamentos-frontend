@@ -9,6 +9,18 @@ class CicloPagamentoList extends React.Component {
         this.props.getList();        
     }
 
+    renderRows(){
+        const list = this.props.list || [];
+
+        return list.map ( obj => (
+            <tr key={obj._id}>
+                <td>{obj.nome}</td>
+                <td>{obj.mes}</td>
+                <td>{obj.ano}</td>
+            </tr>
+        ));
+    }
+
     render(){
         console.log(this.props.list)
         return (
@@ -22,7 +34,7 @@ class CicloPagamentoList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {this.renderRows()}
                     </tbody>
                 </table>
             </div>
