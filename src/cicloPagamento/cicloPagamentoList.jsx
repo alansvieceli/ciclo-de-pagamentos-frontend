@@ -21,8 +21,7 @@ class CicloPagamentoList extends React.Component {
         ));
     }
 
-    render(){
-        console.log(this.props.list)
+    render(){        
         return (
             <div>
                 <table className="table">
