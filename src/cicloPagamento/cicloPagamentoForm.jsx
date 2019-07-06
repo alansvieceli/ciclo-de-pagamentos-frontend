@@ -1,3 +1,4 @@
+import Constants from '../common/consts';
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
@@ -23,4 +24,4 @@ class CicloPagamentoForm extends React.Component {
     }
 }
 
-export default reduxForm({form: 'cicloPagamentoForm'})(CicloPagamentoForm)
+export default reduxForm({form: Constants.ID_FORM_PAGAMENTO})(CicloPagamentoForm)
