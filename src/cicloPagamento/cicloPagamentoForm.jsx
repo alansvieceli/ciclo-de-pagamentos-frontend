@@ -2,6 +2,8 @@ import Constants from '../common/consts';
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
+import labelAndInput from '../common/form/labelAndInput'
+
 class CicloPagamentoForm extends React.Component {
 
     render(){
@@ -11,9 +13,12 @@ class CicloPagamentoForm extends React.Component {
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
-                    <Field name='nome' component='input' />
-                    <Field name='mes' component='input' />
-                    <Field name='ano' component='input' />
+                    <Field name='nome' component={labelAndInput} 
+                        label='Nome' cols='12 4' placeholder="Informe o nome" />
+                    <Field name='mes' component={labelAndInput} type='number'
+                        label='Mês' cols='12 4' placeholder="Informe o mês"/>
+                    <Field name='ano' component={labelAndInput} type='number'
+                        label='Ano' cols='12 4' placeholder="Informe o ano"/>
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className='btn btn-primary'>Subtmit</button>
