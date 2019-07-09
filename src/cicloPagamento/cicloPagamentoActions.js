@@ -13,10 +13,18 @@ export function getList(){
 }
 
 export function create(values){
+    return submit(values, 'post')
+}
 
-    return dispatch => {
+export function update(values) {
+    return submit(values, 'put')
 
-        axios.post(`${Constants.BASE_URL}`, values)
+}
+
+function submit(values, method){
+    return dispatch => { //<--redux-thunk
+        const id = values._id ? values._id : ""
+        axios[method](`${Constants.BASE_URL}/${id}`, values)
         .then(resp => {
             toastr.success("Sucessos", "Operação Realizada com Sucessos.")
             dispatch([ //<-- redux multi
@@ -33,9 +41,6 @@ export function create(values){
         })
 
     }
-}
-
-export function update(value) {
 
 }
 
