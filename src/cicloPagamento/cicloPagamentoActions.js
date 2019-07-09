@@ -34,3 +34,15 @@ export function create(values){
 
     }
 }
+
+export function update(value) {
+
+}
+
+export function showUpdate(cicloPagamento){
+    //redux-multi...retorna um array de action
+    return [
+        showTabs("tabUpdate"),
+        selectTab("tabUpdate")
+    ]
+}
