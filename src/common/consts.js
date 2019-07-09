@@ -5,7 +5,7 @@ const Constants = {
     PAGAMENTOS_SUMARIO_GET: 'PAGAMENTOS_SUMARIO_GET',
     TAB_SELECTED: 'TAB_SELECTED',
     TAB_SHOWED: 'TAB_SHOWED',
-
+    INITITAL_VALUES: {}
 }
 
 export default Constants

@@ -1,7 +1,10 @@
 import Constants from '../common/consts';
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 
+import { init } from './cicloPagamentoActions'
 import labelAndInput from '../common/form/labelAndInput'
 
 class CicloPagamentoForm extends React.Component {
@@ -22,6 +25,7 @@ class CicloPagamentoForm extends React.Component {
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className='btn btn-primary'>Subtmit</button>
+                    <button type='button' className='btn btn-default' onClick={this.props.init}>Cancelar</button>
                 </div>
             </form>
 
@@ -29,6 +33,8 @@ class CicloPagamentoForm extends React.Component {
     }
 }
 
-export default reduxForm({form: Constants.ID_FORM_PAGAMENTO, destroyOnUnmount: false})(CicloPagamentoForm)
+CicloPagamentoForm = reduxForm({form: Constants.ID_FORM_PAGAMENTO, destroyOnUnmount: false})(CicloPagamentoForm)
+const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
+export default connect(null, mapDispatchToProps)(CicloPagamentoForm) 
 
 //destroyOnUnmount: nao quero q ele destrua os dados do form quando o componente for destruido

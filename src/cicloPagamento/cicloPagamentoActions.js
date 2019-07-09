@@ -47,3 +47,12 @@ export function showUpdate(cicloPagamento){
         initialize(Constants.ID_FORM_PAGAMENTO, cicloPagamento)
     ]
 }
+
+export function init(){
+    return [
+        showTabs('tabList', 'tabCreate'),
+        selectTab('tabList'),
+        getList(),
+        initialize(Constants.ID_FORM_PAGAMENTO, Constants.INITITAL_VALUES)
+    ]
+}
