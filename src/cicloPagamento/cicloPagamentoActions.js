@@ -1,7 +1,7 @@
 import Constants from '../common/consts';
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
-import { reset as resetForm } from 'redux-form'
+import { reset as resetForm, initialize } from 'redux-form'
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 export function getList(){
@@ -43,6 +43,7 @@ export function showUpdate(cicloPagamento){
     //redux-multi...retorna um array de action
     return [
         showTabs("tabUpdate"),
-        selectTab("tabUpdate")
+        selectTab("tabUpdate"),
+        initialize(Constants.ID_FORM_PAGAMENTO, cicloPagamento)
     ]
 }

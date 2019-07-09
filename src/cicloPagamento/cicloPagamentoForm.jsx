@@ -29,4 +29,6 @@ class CicloPagamentoForm extends React.Component {
     }
 }
 
-export default reduxForm({form: Constants.ID_FORM_PAGAMENTO})(CicloPagamentoForm)
+export default reduxForm({form: Constants.ID_FORM_PAGAMENTO, destroyOnUnmount: false})(CicloPagamentoForm)
+
+//destroyOnUnmount: nao quero q ele destrua os dados do form quando o componente for destruido
