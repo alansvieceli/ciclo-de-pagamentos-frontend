@@ -11,20 +11,20 @@ class CicloPagamentoForm extends React.Component {
 
     render(){
 
-        const { handleSubmit } = this.props //o reduxform add isso no props
+        const { handleSubmit, readOnly } = this.props //o reduxform add isso no props
 
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
-                    <Field name='nome' component={labelAndInput} 
+                    <Field name='nome' component={labelAndInput} readOnly={readOnly}
                         label='Nome' cols='12 4' placeholder="Informe o nome" />
-                    <Field name='mes' component={labelAndInput} type='number'
+                    <Field name='mes' component={labelAndInput} readOnly={readOnly} type='number'
                         label='Mês' cols='12 4' placeholder="Informe o mês"/>
-                    <Field name='ano' component={labelAndInput} type='number'
+                    <Field name='ano' component={labelAndInput} readOnly={readOnly} type='number'
                         label='Ano' cols='12 4' placeholder="Informe o ano"/>
                 </div>
                 <div className='box-footer'>
-                    <button type='submit' className='btn btn-primary'>Subtmit</button>
+                    <button type='submit' className='btn btn-primary'> Gravar</button>
                     <button type='button' className='btn btn-default' onClick={this.props.init}>Cancelar</button>
                 </div>
             </form>

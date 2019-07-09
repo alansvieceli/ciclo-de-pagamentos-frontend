@@ -21,12 +21,17 @@ export function update(values) {
 
 }
 
+export function remove(values) {
+    return submit(values, 'delete')
+
+}
+
 function submit(values, method){
     return dispatch => { //<--redux-thunk
         const id = values._id ? values._id : ""
         axios[method](`${Constants.BASE_URL}/${id}`, values)
         .then(resp => {
-            toastr.success("Sucessos", "Operação Realizada com Sucessos.")
+            toastr.success("Sucesso", "Operação Realizada com Sucessos.")
             dispatch([ //<-- redux multi
                 resetForm(Constants.ID_FORM_PAGAMENTO),
                 getList(),
@@ -49,6 +54,15 @@ export function showUpdate(cicloPagamento){
     return [
         showTabs("tabUpdate"),
         selectTab("tabUpdate"),
+        initialize(Constants.ID_FORM_PAGAMENTO, cicloPagamento)
+    ]
+}
+
+export function showDelete(cicloPagamento){
+    //redux-multi...retorna um array de action
+    return [
+        showTabs("tabDelete"),
+        selectTab("tabDelete"),
         initialize(Constants.ID_FORM_PAGAMENTO, cicloPagamento)
     ]
 }

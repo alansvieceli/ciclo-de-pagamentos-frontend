@@ -10,7 +10,7 @@ import TabsContent from '../common/tab/tabsContent'
 import TabHeader from '../common/tab/tabHeader'
 import TabContent from '../common/tab/tabContent'
 import { selectTab, showTabs } from '../common/tab/tabActions'
-import { create, update } from './cicloPagamentoActions'
+import { create, update, remove } from './cicloPagamentoActions'
 
 import CicloPagamentoList from './cicloPagamentoList'
 import CicloPagamentoForm from './cicloPagamentoForm'
@@ -44,7 +44,9 @@ class CicloPagamento extends React.Component {
                             <TabContent id='tabUpdate'>
                                 <CicloPagamentoForm onSubmit={this.props.update}/>
                             </TabContent>
-                            <TabContent id='tabDelete'><h1>Excluir</h1></TabContent>
+                            <TabContent id='tabDelete'>                                
+                                <CicloPagamentoForm onSubmit={this.props.remove} readOnly={true} />
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
@@ -54,5 +56,5 @@ class CicloPagamento extends React.Component {
 
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update, remove}, dispatch)
 export default connect(null, mapDispatchToProps)(CicloPagamento)

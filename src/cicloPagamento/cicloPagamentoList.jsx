@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getList, showUpdate } from './cicloPagamentoActions'
+import { getList, showUpdate, showDelete } from './cicloPagamentoActions'
 
 class CicloPagamentoList extends React.Component {
 
@@ -20,6 +20,9 @@ class CicloPagamentoList extends React.Component {
                 <td>
                     <button className="btn btn-warning" onClick={() => this.props.showUpdate(obj)} >
                         <i className="fa fa-pencil" />
+                    </button>
+                    <button className="btn btn-danger" onClick={() => this.props.showDelete(obj)} >
+                        <i className="fa fa-trash-o" />
                     </button>
                 </td>
             </tr>
@@ -48,5 +51,5 @@ class CicloPagamentoList extends React.Component {
 }
 
 const mapStateToProps = state => ({list: state.cicloPagamento.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({getList, showUpdate, showDelete}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(CicloPagamentoList)
