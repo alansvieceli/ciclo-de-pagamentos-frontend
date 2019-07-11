@@ -1,14 +1,18 @@
 import React from 'react'
+import { Field } from 'redux-form'
 
 import Grid from '../common/layout/grid'
-import { Field } from 'redux-form'
+import Input from '../common/form/input'
+
 class CreditList extends React.Component {
 
     renderRows(){
         return (
             <tr>
-                <td><Field name="creditos[0].nome" component="input" /></td>
-                <td><Field name="creditos[0].valor" component="input" /></td>
+                <td><Field name="creditos[0].nome" component={Input} 
+                    placeholder="Informe o nome" readOnly={this.props.readOnly} /></td>
+                <td><Field name="creditos[0].valor" component={Input} 
+                    placeholder="Informe o valor" readOnly={this.props.readOnly} /></td>
                 <td></td>
             </tr>
         )
