@@ -39,13 +39,23 @@ class CicloPagamento extends React.Component {
                                 <CicloPagamentoList />
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                <CicloPagamentoForm onSubmit={this.props.create}/>
+                                <CicloPagamentoForm 
+                                    onSubmit={this.props.create}
+                                    submitLabel="Incluir"
+                                    submitClass="primary"/>
                             </TabContent>                                
                             <TabContent id='tabUpdate'>
-                                <CicloPagamentoForm onSubmit={this.props.update}/>
+                                <CicloPagamentoForm 
+                                    onSubmit={this.props.update}
+                                    submitLabel="Alterar"
+                                    submitClass="info"/>
                             </TabContent>
                             <TabContent id='tabDelete'>                                
-                                <CicloPagamentoForm onSubmit={this.props.remove} readOnly={true} />
+                                <CicloPagamentoForm 
+                                    onSubmit={this.props.remove} 
+                                    submitLabel="Excluir"
+                                    submitClass="danger"
+                                    readOnly={true} />
                             </TabContent>
                         </TabsContent>
                     </Tabs>
