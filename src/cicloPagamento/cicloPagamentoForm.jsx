@@ -2,7 +2,7 @@ import Constants from '../common/consts';
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 
 import { init } from './cicloPagamentoActions'
 import labelAndInput from '../common/form/labelAndInput'
@@ -12,8 +12,7 @@ class CicloPagamentoForm extends React.Component {
 
     render(){
 
-        const { handleSubmit, readOnly } = this.props //o reduxform add isso no props
-
+        const { handleSubmit, readOnly, creditos } = this.props //o reduxform add isso no props
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
@@ -23,7 +22,7 @@ class CicloPagamentoForm extends React.Component {
                         label='Mês' cols='12 4' placeholder="Informe o mês"/>
                     <Field name='ano' component={labelAndInput} readOnly={readOnly} type='number'
                         label='Ano' cols='12 4' placeholder="Informe o ano"/>
-                    <CreditList cols="12 6" readOnly={readOnly}/>
+                    <CreditList cols="12 6" list={creditos} readOnly={readOnly}/>
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className={`btn btn-${this.props.submitClass}`}>
@@ -38,7 +37,11 @@ class CicloPagamentoForm extends React.Component {
 }
 
 CicloPagamentoForm = reduxForm({form: Constants.ID_FORM_PAGAMENTO, destroyOnUnmount: false})(CicloPagamentoForm)
+
+const selector = formValueSelector(Constants.ID_FORM_PAGAMENTO)
+const mapStateToProps = state => ({creditos: selector(state, 'creditos')})
 const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
-export default connect(null, mapDispatchToProps)(CicloPagamentoForm) 
+
+export default connect(mapStateToProps, mapDispatchToProps)(CicloPagamentoForm) 
 
 //destroyOnUnmount: nao quero q ele destrua os dados do form quando o componente for destruido
