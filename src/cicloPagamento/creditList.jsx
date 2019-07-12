@@ -1,15 +1,27 @@
 import React from 'react'
-import { Field } from 'redux-form'
+import { Field, arrayInsert } from 'redux-form'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Grid from '../common/layout/grid'
 import Input from '../common/form/input'
+import Constants from '../common/consts';
 
 class CreditList extends React.Component {
 
+    
+    add(index, item = {}) {
+     
+        if (this.props.readOnly){
+            return;
+        }
+
+        this.props.arrayInsert(Constants.ID_FORM_PAGAMENTO, 'creditos', index, item)
+    
+    }
+
     renderRows(){
         const list = this.props.list || []
-
-        //console.log(this.props.list);
 
         return list.map ((item, index) => (
             <tr key={index}>
@@ -17,7 +29,14 @@ class CreditList extends React.Component {
                     placeholder="Informe o nome" readOnly={this.props.readOnly} /></td>
                 <td><Field name={`creditos[${index}].valor`} component={Input} 
                     placeholder="Informe o valor" readOnly={this.props.readOnly} /></td>
-                <td></td>
+                <td>
+                    <button type='button' className='bt btn-success' onClick={() => this.add(index + 1)}>
+                        <i className="fa fa-plus" />
+                    </button>
+                    <button type='button' className='bt btn-warning' onClick={() => this.add(index + 1, item)}>
+                        <i className="fa fa-clone" />
+                    </button>
+                </td>
             </tr>
         ))
     }
@@ -31,7 +50,7 @@ class CreditList extends React.Component {
                         <tr>
                             <th>Nome</th>
                             <th>Valor</th>
-                            <th>Ações</th>
+                            <th className='table-actions'>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,4 +62,6 @@ class CreditList extends React.Component {
     }
 }
 
-export default CreditList;
+
+const mapDispatchToProps = dispatch => bindActionCreators({arrayInsert}, dispatch)
+export default connect(null, mapDispatchToProps)(CreditList) 
