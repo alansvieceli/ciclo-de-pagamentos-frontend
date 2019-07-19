@@ -7,7 +7,7 @@ import Grid from '../common/layout/grid'
 import Input from '../common/form/input'
 import Constants from '../common/consts';
 
-class CreditList extends React.Component {
+class ItemList extends React.Component {
 
     remove(index) {
       
@@ -15,7 +15,7 @@ class CreditList extends React.Component {
             return;
         }
 
-        this.props.arrayRemove(Constants.ID_FORM_PAGAMENTO, 'creditos', index)   
+        this.props.arrayRemove(Constants.ID_FORM_PAGAMENTO, this.props.field, index)   
     }
 
     add(index, item = {}) {     
@@ -23,7 +23,7 @@ class CreditList extends React.Component {
             return;
         }
 
-        this.props.arrayInsert(Constants.ID_FORM_PAGAMENTO, 'creditos', index, item)    
+        this.props.arrayInsert(Constants.ID_FORM_PAGAMENTO, this.props.field, index, item)    
     }
 
     renderRows(){
@@ -31,9 +31,9 @@ class CreditList extends React.Component {
 
         return list.map ((item, index) => (
             <tr key={index}>
-                <td><Field name={`creditos[${index}].nome`} component={Input} 
+                <td><Field name={`${this.props.field}[${index}].nome`} component={Input} 
                     placeholder="Informe o nome" readOnly={this.props.readOnly} /></td>
-                <td><Field name={`creditos[${index}].valor`} component={Input} 
+                <td><Field name={`${this.props.field}[${index}].valor`} component={Input} 
                     placeholder="Informe o valor" readOnly={this.props.readOnly} /></td>
                 <td>
                     <button type='button' className='bt btn-success' onClick={() => this.add(index + 1)}>
@@ -54,19 +54,21 @@ class CreditList extends React.Component {
     render(){
         return (
             <Grid cols={this.props.cols}>
-                <fieldset>Créditos</fieldset>
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                            <th className='table-actions'>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderRows()}
-                    </tbody>
-                </table>
+                <fieldset>
+                    <legend>{this.props.caption}</legend>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Valor</th>
+                                <th className='table-actions'>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.renderRows()}
+                        </tbody>
+                    </table>
+                </fieldset>
             </Grid>
         )
     }
@@ -74,4 +76,4 @@ class CreditList extends React.Component {
 
 
 const mapDispatchToProps = dispatch => bindActionCreators({arrayInsert, arrayRemove}, dispatch)
-export default connect(null, mapDispatchToProps)(CreditList) 
+export default connect(null, mapDispatchToProps)(ItemList) 
