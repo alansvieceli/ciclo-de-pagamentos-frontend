@@ -12,7 +12,7 @@ class CicloPagamentoForm extends React.Component {
 
     render(){
 
-        const { handleSubmit, readOnly, creditos } = this.props //o reduxform add isso no props
+        const { handleSubmit, readOnly, creditos, debitos } = this.props //o reduxform add isso no props
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
@@ -24,6 +24,8 @@ class CicloPagamentoForm extends React.Component {
                         label='Ano' cols='12 4' placeholder="Informe o ano"/>
                     <ItemList cols="12 6" list={creditos} readOnly={readOnly}
                         field='creditos' caption='Créditos'/>
+                    <ItemList cols="12 6" list={debitos} readOnly={readOnly}
+                        field='debitos' caption='Debitos' showStatus={true}/>                        
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className={`btn btn-${this.props.submitClass}`}>
@@ -40,7 +42,10 @@ class CicloPagamentoForm extends React.Component {
 CicloPagamentoForm = reduxForm({form: Constants.ID_FORM_PAGAMENTO, destroyOnUnmount: false})(CicloPagamentoForm)
 
 const selector = formValueSelector(Constants.ID_FORM_PAGAMENTO)
-const mapStateToProps = state => ({creditos: selector(state, 'creditos')})
+const mapStateToProps = state => ({
+    creditos: selector(state, 'creditos'),
+    debitos: selector(state, 'debitos')
+})
 const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CicloPagamentoForm) 
