@@ -1,7 +1,11 @@
 const Constants = {
-    API_URL: 'http://localhost:3003/api',
-    OAPI_URL: 'http://localhost:3003/oapi',
-    BASE_URL: 'http://localhost:3003/api/ciclo-de-pagamentos',
+    //API_URL: 'http://localhost:3003/api',
+    //OAPI_URL: 'http://localhost:3003/oapi',
+    //BASE_URL: 'http://localhost:3003/api/ciclo-de-pagamentos',
+
+    API_URL: 'https://ciclo-pagamentos-backend.herokuapp.com/api',
+    OAPI_URL: 'https://ciclo-pagamentos-backend.herokuapp.com/oapi',
+    BASE_URL: 'https://ciclo-pagamentos-backend.herokuapp.com/api/ciclo-de-pagamentos',
     ID_FORM_PAGAMENTO: 'cicloPagamentoForm',
     ID_FORM_LOGIN: 'authForm',
     PAGAMENTOS_GET: 'PAGAMENTOS_GET',
